@@ -1,0 +1,42 @@
+name: 📱 Zentiq 2.5-Hour (2Hr 1000-AI Mobile Evolution + 30Min Phone Check) Emulator
+
+on:
+  push:
+    paths:
+      - 'mobile_godcheck_signal.json'
+      - '.github/workflows/mobile_godcheck_2_5hr.yml'
+  workflow_dispatch:
+
+jobs:
+  android-mobile-emulator-1000ai:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170 # 2.0 Hours Evolution + 0.5 Hour Special Phone Check = 2.5 Hours (150m) + 20m buffer!
+    strategy:
+      fail-fast: false
+      max-parallel: 20 # 20 Parallel Android Emulator VMs (80 CPU Cores)!
+      matrix:
+        core_node: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    steps:
+      - name: ⚡ Checkout Public Supercomputer
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python 3.11 Clean Virtualenv
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📱 Install Playwright Headless Android Chromium & Mobile GPU Drivers
+        run: |
+          python -m pip install -q --upgrade pip
+          python -m pip install -q playwright huggingface_hub hf_transfer
+          playwright install --with-deps chromium
+
+      - name: 🔥 Run 2.0-Hr 1000-AI Mobile Evolution + 0.5-Hr Special Phone Certification
+        env:
+          CORE_NODE: ${{ matrix.core_node }}
+          EVOLUTION_HOURS: "2.0"
+          SPECIAL_CHECK_HOURS: "0.5"
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_HUB_ENABLE_HF_TRANSFER: "1"
+          PYTHONUNBUFFERED: "1"
+        run: python -u mobile_godcheck_worker.py
