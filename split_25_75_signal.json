@@ -1,0 +1,28 @@
+{
+  "command": "LAUNCH_5HR_1000AI_25PCT_APP_REPAIR_75PCT_DATA",
+  "app_qa_repair_nodes_25pct": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "data_forge_nodes_75pct": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "ts": 1793079489.7131622
+}
