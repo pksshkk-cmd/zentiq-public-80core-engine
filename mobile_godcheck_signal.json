@@ -1,0 +1,13 @@
+{
+  "command": "LAUNCH_2_5HR_MOBILE_EMULATOR_GOD_CHECK",
+  "phase_1_evolution_hours": 2.0,
+  "phase_2_special_phone_certification_hours": 0.5,
+  "emulated_phones": [
+    "Redmi/Realme 5G",
+    "Pixel 7",
+    "Galaxy S24 Ultra",
+    "OnePlus Nord",
+    "Landscape Gaming"
+  ],
+  "ts": 1793122546.1938486
+}
